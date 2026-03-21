@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Filme na API{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Buscar Filme na API</h2>
+    <p>Pesquise informações externas de filmes usando a OMDb API.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="barra-busca">
+            <input type="text" name="titulo" placeholder="Digite o nome do filme">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <a class="btn btn-secondary" href="{% url 'lista_filmes' %}">Voltar</a>
+        </div>
+    </form>
+
+    {% if erro %}
+        <div class="rodape-card">
+            <p class="destaque">{{ erro }}</p>
+        </div>
+    {% endif %}
+
+    {% if filme %}
+        <div class="rodape-card">
+            <hr>
+            <h3>{{ filme.Title }}</h3>
+
+            <div class="info-api">
+                <p><strong>Ano:</strong> {{ filme.Year }}</p>
+                <p><strong>Gênero:</strong> {{ filme.Genre }}</p>
+                <p><strong>Diretor:</strong> {{ filme.Director }}</p>
+                <p><strong>Sinopse:</strong> {{ filme.Plot }}</p>
+            </div>
+
+            {% if filme.Poster != "N/A" %}
+                <img class="poster" src="{{ filme.Poster }}" alt="Poster do filme">
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

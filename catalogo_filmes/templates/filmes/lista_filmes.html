@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Filmes{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Minha Biblioteca de Filmes</h2>
+    <p>Gerencie seus títulos cadastrados e acesse rapidamente as principais ações.</p>
+
+    <div class="acoes-topo">
+        <a class="btn btn-primary" href="{% url 'criar_filme' %}">+ Adicionar Filme</a>
+        <a class="btn btn-secondary" href="{% url 'buscar_filme' %}">🔎 Buscar Filme na API</a>
+    </div>
+
+    {% if filmes %}
+        <div class="lista-grid">
+            {% for filme in filmes %}
+                <div class="item-filme">
+                    {% if filme.poster %}
+                        <img class="capa-filme" src="{{ filme.poster }}" alt="Poster">
+                    {% else %}
+                        <img class="capa-filme" src="https://via.placeholder.com/300x450?text=Sem+Poster" alt="Sem poster">
+                    {% endif %}
+
+                    <div class="conteudo-filme">
+                        <h3>{{ filme.titulo }}</h3>
+                        <p><strong>Ano:</strong> {{ filme.ano }}</p>
+
+                        {% if filme.genero %}
+                            <p>{{ filme.genero }}</p>
+                        {% endif %}
+
+                        <div class="acoes-item">
+                            <a class="btn btn-warning" href="{% url 'editar_filme' filme.pk %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'excluir_filme' filme.pk %}">Excluir</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="mensagem-vazia">Nenhum filme cadastrado ainda.</p>
+    {% endif %}
+</div>
+{% endblock %}

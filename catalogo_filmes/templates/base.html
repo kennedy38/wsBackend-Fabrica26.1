@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Catálogo de Filmes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="topo">
+        <div class="container">
+            <div class="marca">
+                <h1>🎬 Catálogo de Filmes</h1>
+                <p>CRUD em Django, MySQL e integração com API externa</p>
+            </div>
+
+            <nav class="menu">
+                <a href="{% url 'lista_filmes' %}">Início</a>
+                <a href="{% url 'criar_filme' %}">Adicionar Filme</a>
+                <a href="{% url 'buscar_filme' %}">Buscar na API</a>
+                <a href="/admin/">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
