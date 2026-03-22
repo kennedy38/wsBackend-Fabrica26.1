@@ -52,6 +52,19 @@ DELETE /api/categorias/{id}/
 
 senha: "23a260d9"  OMDb
 
+🎬 Sugestões de pesquisas para testar a API
+
+Inception
+Interstellar
+The Godfather
+Titanic
+Avatar
+Gladiator
+The Dark Knight
+Parasite
+Joker
+Forrest Gump
+
 👨‍💻 Autor
 
 Kennedy Oliveira        
